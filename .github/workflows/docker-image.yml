@@ -34,7 +34,7 @@ jobs:
         curl -sL https://raw.githubusercontent.com/slimtoolkit/slim/master/scripts/install-slim.sh | sudo -E bash -
           
     - name: slim
-      run: slim build --http-probe=true --expose=8000 ddddocr-fastapi:latest --tag ddddocr-fastapi:slim
+      run: slim build  ddddocr-fastapi:latest --tag ddddocr-fastapi:slim
  
 
     - name: Push Docker image
