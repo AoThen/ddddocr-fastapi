@@ -19,10 +19,10 @@ jobs:
 
 
     # Build the Docker image first
-    # - uses: docker/build-push-action@v4
-    #   with:
-    #     push: false
-    #     tags: ddddocr-fastapi:{{inputs.docker_tab}} 
+    - uses: docker/build-push-action@v4
+      with:
+        push: false
+        tags: ddddocr-fastapi:{{inputs.docker_tab}} 
 
     # Slim the Image
     - uses: kitabisa/docker-slim-action@v1.1.2
