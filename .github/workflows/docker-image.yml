@@ -27,15 +27,15 @@ jobs:
       
         
     - name: Build the Docker image
-      run: docker buildx build . --file Dockerfile --tag ddddocr-fastapi:latest --platform linux/amd64 --push 
+      run: docker buildx build . --file Dockerfile --tag aothen/ddddocr-fastapi:latest --platform linux/amd64 --push 
       
     - name: Setup SlimToolkit
       run: |
         curl -sL https://raw.githubusercontent.com/slimtoolkit/slim/master/scripts/install-slim.sh | sudo -E bash -
           
     - name: slim
-      run: slim build --http-probe=true --expose=8000 ddddocr-fastapi:latest
+      run: slim build --http-probe=true --expose=8000 ddddocr-fastapi:latest --tag ddddocr-fastapi:slim
+ 
 
-
-    # - name: Push Docker image
-    #   run: docker push aothen/ddddocr-fastapi:latest
+    - name: Push Docker image
+      run: docker push aothen/ddddocr-fastapi:slim
