@@ -25,7 +25,7 @@ jobs:
     - uses: docker/build-push-action@v6
       with:
         push: false
-        tags: ddddocr-fastapi:{{inputs.dockertag}} 
+        tags: ddddocr-fastapi:latest
 
     # Slim the Image
     - uses: kitabisa/docker-slim-action@v1.1.2
