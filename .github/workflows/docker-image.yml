@@ -2,6 +2,7 @@ name: Docker Image CI
 
 on:
   workflow_dispatch:
+  push:
 
 jobs:
 
@@ -17,21 +18,24 @@ jobs:
 
     - name: Setup Docker buildx
       uses: docker/setup-buildx-action@v3
-        
-    - name: Build the Docker image
-      run: docker buildx build . --file Dockerfile --tag ddddocr-fastapi:latest --platform linux/amd64
-      
-    - name: Setup SlimToolkit
-      run: |
-        curl -sL https://raw.githubusercontent.com/slimtoolkit/slim/master/scripts/install-slim.sh | sudo -E bash -
-          
+
     - name: Login to Docker Hub
       uses: docker/login-action@v3
       with:
           username: ${{ secrets.DOCKER_HUB_USER }}
           password: ${{ secrets.DOCKER_HUB_PWD }}
-
-    - name: Push Docker image
+      
+        
+    - name: Build the Docker image
+      run: docker buildx build . --file Dockerfile --tag ddddocr-fastapi:latest --platform linux/amd64 --push 
+      
+    - name: Setup SlimToolkit
       run: |
-          slim build --http-probe=true --expose=8000 ddddocr-fastapi:latest
-          docker push aothen/ddddocr-fastapi:latest
+        curl -sL https://raw.githubusercontent.com/slimtoolkit/slim/master/scripts/install-slim.sh | sudo -E bash -
+          
+    - name: slim
+      run: slim build --http-probe=true --expose=8000 ddddocr-fastapi:latest
+
+
+    # - name: Push Docker image
+    #   run: docker push aothen/ddddocr-fastapi:latest
