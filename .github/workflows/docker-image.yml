@@ -2,11 +2,7 @@ name: Docker Image CI
 
 on:
   workflow_dispatch:
-    inputs:
-      dockertag:
-        required: false
-        type: string
-        default: 'latest'
+  push:
 
 jobs:
 
