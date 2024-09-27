@@ -30,7 +30,7 @@ jobs:
     # Slim the Image
     - uses: kitabisa/docker-slim-action@v1.1.2
       env:
-        DSLIM_HTTP_PROBE: false
+        DSLIM_HTTP_PROBE_PORTS: 8000
       with:
         target: ddddocr-fastapi:latest
         tag: "slim-latest"
