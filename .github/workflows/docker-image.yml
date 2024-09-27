@@ -32,8 +32,8 @@ jobs:
       env:
         DSLIM_HTTP_PROBE: false
       with:
-        target: ddddocr-fastapi:{{inputs.dockertag}}
-        tag: "slim-{{inputs.dockertag}}"
+        target: ddddocr-fastapi:latest
+        tag: "slim-latest"
 
     # Docker Hub Login
     - name: Login to Docker Hub
@@ -45,8 +45,8 @@ jobs:
     # Push to the registry
     - name: Push Docker image
       run: | 
-        docker tag ddddocr-fastapi:slim-{{inputs.dockertag}} ${{ secrets.DOCKER_HUB_USER }}/ddddocr-fastapi:slim-{{inputs.dockertag}}
-        docker push ${{ secrets.DOCKER_HUB_USER }}/ddddocr-fastapi:slim-{{inputs.dockertag}}
+        docker tag ddddocr-fastapi:slim-latest ${{ secrets.DOCKER_HUB_USER }}/ddddocr-fastapi:slim-latest
+        docker push ${{ secrets.DOCKER_HUB_USER }}/ddddocr-fastapi:slim-latest
 
     # - name: Set up QEMU
     #   uses: docker/setup-qemu-action@v3
